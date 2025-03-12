@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Risk Predictor - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue Gradient Background */
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        /* Dashboard container */
+        .dashboard-container {
+            margin-top: 300px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ffcc00; /* Highlighted Accent Color */
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .button {
+            background-color: #ffcc00; /* Highlighted Color */
+            color: #1e3c72;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e6b800;
+            transform: translateY(-5px);
+        }
+        .button:active {
+            transform: translateY(2px);
+        }
+        /* Decorative floating elements */
+        .floating-heart {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-20px);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+        .floating-heart:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        .floating-heart:nth-child(2) {
+            top: 30%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        .floating-heart:nth-child(3) {
+            top: 70%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        .floating-heart:nth-child(4) {
+            top: 50%;
+            left: 50%;
+            animation-delay: 6s;
+        }
+        /* Breathing Exercises Section */
+        .breathing-exercises-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .breathing-exercises-container h2 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+        .breathing-exercises-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .breathing-exercises-container li {
+            font-size: 16px;
+            line-height: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .breathing-exercises-container li span {
+            margin-left: 10px;
+        }
+        /* Project Abstract Section */
+        .abstract-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .abstract-container h2 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+        .abstract-container p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+        }
+        .footer-content span {
+            color: #ffcc00;
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer-content span:not(:last-child)::after {
+            content: "|";
+            color: #f0f0f0;
+            margin-left: 15px;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts for decoration -->
+    <div class="floating-heart">🫀</div>
+    <div class="floating-heart">💖</div>
+    <div class="floating-heart">🩺</div>
+    <div class="floating-heart">🧑‍⚕️</div>
+    <!-- Dashboard container -->
+    <div class="dashboard-container">
+        <h1>Heart Risk Predictor</h1>
+        <p>Your one-stop tool for assessing heart health and risks with ease.</p>
+        <!-- Buttons -->
+        <div class="button-group">
+            <button onclick="window.location.href='/predictor'" class="button go-to-predictor">Admin Login</button>
+            <button onclick="window.location.href='/user_login'" class="button user-login">User Login</button>
+            <button class="button visualizations-button" onclick="window.location.href='/visualizations'">Data Visualizations</button>
+            <button class="button visualizations-button" onclick="window.location.href='/b'">Breathing Exercises</button>
+        </div>
+    </div>
+    
+    <!-- Project Abstract Section -->
+    <div class="abstract-container">
+        <h2>Project Abstract</h2>
+        <p>
+            The Heart Disease Classification project aims to predict the risk of heart disease using the Random Forest Algorithm. 
+            This machine learning model analyzes various health parameters to provide accurate risk assessments. 
+            The prediction dashboard allows users to input their health data and receive instant feedback on their heart disease risk level, 
+            along with personalized recommendations for maintaining a healthy lifestyle.
+        </p>
+    </div>
+    <!-- Footer with About Us details -->
+    <footer>
+        <div class="footer-content">
+            <span><strong>Name:</strong> Sam Abishekraj</span>
+            <span><strong>Field:</strong> Data Science</span>
+            <span><strong>Education:</strong> Bsc Data Science Student</span>
+        </div>
+    </footer>
+</body>
+</html>

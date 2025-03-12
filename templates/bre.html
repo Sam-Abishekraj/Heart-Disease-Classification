@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathing Exercises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dracula Theme Colors */
+        :root {
+            --bg-color: #282a36;
+            --primary-color: #f8f8f2;
+            --secondary-color: #6272a4;
+            --highlight-color: #ff79c6;
+            --button-color: #50fa7b;
+            --button-hover-color: #8be9fd;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .breathing-container {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+            font-size: 30px;
+            animation: bounceIn 1s ease;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        li span {
+            font-size: 1.5rem;
+        }
+
+        .info-text {
+            margin-top: 15px;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--button-color);
+            color: var(--bg-color);
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 2.5s ease-in-out;
+        }
+
+        .back-button:hover {
+            background-color: var(--button-hover-color);
+            transform: translateY(-3px);
+        }
+
+        /* Floating breath-related emojis */
+        .emoji {
+            position: absolute;
+            font-size: 3rem;
+            animation: emojiFloat 5s ease-in-out infinite;
+        }
+
+        .emoji:nth-child(1) { animation-delay: 1s; }
+        .emoji:nth-child(2) { animation-delay: 2s; }
+        .emoji:nth-child(3) { animation-delay: 3s; }
+        .emoji:nth-child(4) { animation-delay: 4s; }
+        .emoji:nth-child(5) { animation-delay: 5s; }
+
+        @keyframes emojiFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.7; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Bounce-in animation */
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* Fade-in-up animation */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating breath-related emojis -->
+    <div class="emoji" style="top: 10%; left: 20%;">🌬️</div>
+    <div class="emoji" style="top: 25%; left: 50%;">🫁</div>
+    <div class="emoji" style="top: 40%; left: 60%;">🧘</div>
+    <div class="emoji" style="top: 60%; left: 10%;">👃</div>
+    <div class="emoji" style="top: 75%; left: 80%;">💨</div>
+    <div class="emoji" style="top: 35%; left: 10%;">🧘</div>
+    <div class="emoji" style="top: 20%; left: 80%;">🫁</div>
+    <div class="emoji" style="top: 50%; left: 90%;">🌿</div>
+    <div class="emoji" style="top: 10%; left: 90%;">🌬️</div>
+    <div class="emoji" style="top: 85%; left: 40%;">🧘‍♂️</div>
+
+    <div class="breathing-container">
+        <h1>Breathing Exercises for Heart Health 🫁</h1>
+        <ul>
+            <li>🌬️ Deep Breathing</li>
+            <li>⏹️➡️⬇️⬅️ Box Breathing</li>
+            <li>👃↔️ Alternate Nostril Breathing</li>
+            <li>🫁➡️⬇️ Diaphragmatic Breathing</li>
+            <li>👄💨 Pursed Lip Breathing</li>
+        </ul>
+        <div class="info-text">
+            <p>These exercises help reduce stress, improve oxygen flow, and promote heart health!</p>
+        </div>
+        <button class="back-button" onclick="window.location.href='/'">Go Back</button>
+    </div>
+
+</body>
+</html>

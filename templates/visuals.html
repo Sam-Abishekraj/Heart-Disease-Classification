@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dracula Theme Colors */
+        :root {
+            --bg-color: #282a36;
+            --primary-color: #f8f8f2;
+            --secondary-color: #6272a4;
+            --highlight-color: #ff79c6;
+            --button-color: #50fa7b;
+            --button-hover-color: #8be9fd;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .visualization-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+            font-size: 30px;
+            animation: bounceIn 1s ease;
+        }
+
+        .dropdown-container {
+            margin-bottom: 20px;
+        }
+
+        .dropdown-container label {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        .dropdown-container select {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-container select:hover {
+            background-color: var(--button-hover-color);
+        }
+
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--button-color);
+            color: var(--bg-color);
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--button-hover-color);
+            transform: translateY(-3px);
+        }
+
+        /* Floating emojis animation */
+        .emoji {
+            position: absolute;
+            font-size: 3rem;
+            animation: emojiFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes emojiFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Bounce-in animation */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Fade-in-up animation */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating emojis -->
+    <div class="emoji" style="top: 10%; left: 20%;">🫀</div>
+    <div class="emoji" style="top: 25%; left: 50%;">💖</div>
+    <div class="emoji" style="top: 40%; left: 60%;">🩺</div>
+    <div class="emoji" style="top: 60%; left: 10%;">🧑‍⚕️</div>
+    <div class="emoji" style="top: 75%; left: 80%;">⚕️</div>
+
+    <!-- Visualization container -->
+    <div class="visualization-container">
+        <h1>Data Visualizations</h1>
+        <div class="dropdown-container">
+            <label for="visualization-select">Select Visualization:</label>
+            <select id="visualization-select">
+                <option value="age_distribution">Age Distribution</option>
+                <option value="chest_pain_vs_target">Chest Pain Type vs Heart Disease</option>
+                <option value="max_heart_rate_vs_target">Max Heart Rate Achieved by Target</option>
+                <option value="gender_distribution">Heart Disease Distribution by Gender</option>
+            </select>
+        </div>
+        <div class="image-container">
+            <img id="visualization-image" src="{{ url_for('static', filename='img1.png') }}" alt="Selected Visualization">
+        </div>
+        <button class="back-button" onclick="window.location.href='/'">Go Back</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('visualization-select');
+            const image = document.getElementById('visualization-image');
+
+            // Map visualization options to image paths
+            const imagePaths = {
+                'age_distribution': "{{ url_for('static', filename='img1.png') }}",
+                'chest_pain_vs_target': "{{ url_for('static', filename='img2.png') }}",
+                'max_heart_rate_vs_target': "{{ url_for('static', filename='img3.png') }}",
+                'gender_distribution': "{{ url_for('static', filename='img4.png') }}"
+            };
+
+            // Update image when selection changes
+            select.addEventListener('change', function() {
+                const selectedValue = this.value;
+                image.src = imagePaths[selectedValue];
+            });
+        });
+    </script>
+</body>
+</html>

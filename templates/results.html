@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Prediction - Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #2b2b2b, #1a1a1a); /* Dark Gradient Background */
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Heart emoji falling animation */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff8c00;
+            animation: heart-fall 10s infinite linear;
+        }
+
+        @keyframes heart-fall {
+            0% {
+                top: -50px;
+                left: calc(100% * random());
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                left: calc(100% * random());
+                opacity: 0;
+            }
+        }
+
+        /* Result container styling */
+        .result-container {
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff8c00; /* Accent Color */
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .prediction span {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #ff8c00; /* Accent Color */
+            font-weight: bold;
+        }
+
+        .advice {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #5f336d;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .user-input {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .user-input span {
+            color: #7a4b8f;
+            font-weight: bold;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff8c00;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #e67e00;
+            transform: translateY(-3px);
+        }
+
+        /* Download button styles */
+        .download-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #00bcd4;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #0097a7;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Heart emojis falling effect -->
+    <div class="heart" style="animation-delay: 1s;">🫀</div>
+    <div class="heart" style="animation-delay: 2s;">🫀</div>
+    <div class="heart" style="animation-delay: 4s;">🫀</div>
+    <div class="heart" style="animation-delay: 6s;">🫀</div>
+    
+    <div class="result-container">
+        <h1>Your Heart Disease Risk Assessment</h1>
+        
+        <!-- Display prediction result -->
+        <div class="prediction">
+            <span>Risk Level:</span> {{ risk }}
+        </div>
+
+        <!-- Display recommendation -->
+        <div class="advice">
+            {{ recommendation }}
+        </div>
+
+        <!-- Back to form button -->
+        <button class="back-button" onclick="window.location.href='/input_form'">Go Back to Form</button>
+        <button class="back-button" onclick="window.location.href='/feedback'">Feedback Form</button>
+        <!-- Add this button in results.html -->
+<div class="download-button-container">
+    <button class="download-btn" onclick="window.location.href='/final_report'">Download Report</button>
+</div>
+
+<style>
+    .download-button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .download-btn {
+        padding: 10px 20px;
+        background-color: #4a148c;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .download-btn:hover {
+        background-color: #6a1b9a;
+        transform: scale(1.05);
+    }
+</style>
+
+
+       
+    </div>
+</body>
+</html>

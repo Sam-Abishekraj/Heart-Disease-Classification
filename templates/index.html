@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Prediction - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #271c49; /* Dark Violet background */
+        color: #f0f0f0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.5s ease;
+      }
+      /* Heart Prediction Title */
+      .heart-title {
+        position: absolute;
+        top: 10%;
+        font-size: 35px;
+        color: #ff8c00;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        animation: slideDown 1s ease-out;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 2;
+          transform: translateY(0);
+        }
+      }
+      nav {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+      .navbar {
+        background-color: #43057e;
+        padding: 20px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.5s ease;
+      }
+      .navbar:hover {
+        background-color: #231c2b;
+      }
+      .brand1 {
+        font-size: 30px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        transition: color 0.5s ease;
+        color: #ff8c00;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        animation: slideDown 3s ease-out;
+      }
+      .brand2 {
+        font-size: 25px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        transition: color 0.5s ease;
+        color: #ff8c00;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        animation: slideDown 3s ease-out;
+      }
+      .brand1:hover {
+        color: #fff;
+      }
+      .brand2:hover {
+        color: #fff;
+      }
+      .login-container {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 40px 30px;
+        width: 350px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        animation: fadeIn 1s ease-out;
+        margin-bottom: 20px;
+      }
+      .login-container:hover {
+        transform: translateY(-10px);
+        opacity: 0.95;
+      }
+      .logout-button:hover {
+        background-color: #836fff;
+        transform: translateY(-3px);
+      }
+      .logout-button:active,
+      .login-button:active {
+        transform: translateY(1px);
+      }
+      .btn1 {
+        margin-top: 10px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-weight: bold;
+        width: 100%;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      h1 {
+        text-align: center;
+        color: #ff8c00; /* Accent color */
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+      .input-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+      label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 2px solid #7a4b8f;
+        border-radius: 10px;
+        background-color: #5f336d;
+        color: #fff;
+        outline: none;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+      }
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border-color: #ff8c00;
+        box-shadow: 0 0 5px rgba(255, 140, 0, 0.8);
+      }
+      button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #ff8c00;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      button[type="submit"]:hover {
+        background-color: #e67e00;
+        transform: translateY(-5px);
+      }
+      .error-message {
+        color: #ff6347;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+        opacity: 0;
+        animation: fadeInError 1s forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInError {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Heart Animations */
+      .heart {
+        position: absolute;
+        top: 50%;
+        right: -100px;
+        font-size: 30px;
+        color: #ff8c00;
+        animation: heartAnimation 10s ease-in-out infinite;
+      }
+      .heart:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .heart:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .heart:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .heart:nth-child(4) {
+        animation-delay: 9s;
+      }
+      @keyframes heartAnimation {
+        0% {
+          transform: translateY(0) rotate(0);
+        }
+        25% {
+          transform: translateY(-100px) rotate(45deg);
+        }
+        50% {
+          transform: translateY(0) rotate(90deg);
+        }
+        75% {
+          transform: translateY(100px) rotate(135deg);
+        }
+        100% {
+          transform: translateY(0) rotate(180deg);
+          right: 100%;
+        }
+      }
+      /* Footer */
+      footer {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: #ff8c00;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      /* Dataset Table */
+      .dataset-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        overflow-x: auto;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .dataset-container table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .dataset-container th,
+      .dataset-container td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #7a4b8f;
+      }
+      .dataset-container th {
+        background-color: #43057e;
+        color: #ff8c00;
+        font-weight: bold;
+      }
+      .dataset-container tr:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .login-container {
+          width: 90%;
+          padding: 25px;
+        }
+        h1 {
+          font-size: 26px;
+        }
+        .dataset-container {
+          margin-top: 100px;
+          max-height: 300px;
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- Heart Animations Flowing from the Right -->
+    <div class="heart">🫀</div>
+    <div class="heart">❤️</div>
+    <div class="heart">🩺</div>
+    <div class="heart">🫀</div>
+
+    <!-- Dynamic Background Effect -->
+    <div class="background-effect">
+        <span style="left: 10%; animation-duration: 7s;"></span>
+        <span style="left: 20%; animation-duration: 6s;"></span>
+        <span style="left: 30%; animation-duration: 8s;"></span>
+        <span style="left: 40%; animation-duration: 7s;"></span>
+        <span style="left: 50%; animation-duration: 6s;"></span>
+        <span style="left: 60%; animation-duration: 9s;"></span>
+    </div>
+
+    <!-- Heart Prediction Title -->
+    <div class="heart-title">Heart Disease Risk Prediction</div>
+
+    <nav>
+        <div class="navbar">
+            <a href="#" class="brand1">Heart🫀Disease Risk Predictor</a>
+            <a href="#" class="brand2">🫀🏥🧑‍⚕️🩺⚕️</a>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="/" method="POST">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+            <!-- Logout button -->
+            <button type="button" class="btn1 logout-button" onclick="window.location.href='/'">Logout</button>
+        </form>
+    </div>
+<!-- Dataset Table: CSV data will be inserted below the login container -->
+<div class="dataset-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Chest Pain Type</th>
+        <th>Resting BP</th>
+        <th>Cholesterol</th>
+        <th>Fasting Blood Sugar</th>
+        <th>Resting ECG</th>
+        <th>Max Heart Rate</th>
+        <th>Exercise Angina</th>
+        <th>Oldpeak</th>
+        <th>Slope</th>
+        <th>CA</th>
+        <th>Thal</th>
+        <th>Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will be dynamically inserted here -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Footer -->
+<footer>Done By Sam Abishekraj D</footer>
+
+<!-- JavaScript to Load CSV Data -->
+<script>
+  // Updated path to your CSV file in the static folder
+  const csvFilePath = 'static/heart-disease.csv';
+
+  // Fetch and display CSV data
+  fetch(csvFilePath)
+    .then(response => response.text())
+    .then(data => {
+      const rows = data.split('\n');
+      const tbody = document.querySelector('.dataset-container tbody');
+      rows.forEach((row, index) => {
+        if (index === 0) return; // Skip header row
+        const cols = row.split(',');
+        const tr = document.createElement('tr');
+        cols.forEach(col => {
+          const td = document.createElement('td');
+          td.textContent = col;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(error => console.error('Error loading CSV file:', error));
+</script>
+</body>
+</html>
